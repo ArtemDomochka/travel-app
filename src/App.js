@@ -1,10 +1,16 @@
 import './App.css';
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import CountryPage from './pages/CountryPage'
 
 function App() {
   return (
-    <div className="container pt-4">
-      <h1>Init</h1>
-    </div>
+    <BrowserRouter>
+      <Switch>
+          <Route path="/" exact component={HomePage}/>
+          <Route path="/Country" component={CountryPage}/>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
