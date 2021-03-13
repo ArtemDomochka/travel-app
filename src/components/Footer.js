@@ -6,7 +6,7 @@ import RsLogo from '../media/rslogo.png'
 const Footer = props => {
 
     return(
-        <footer className="footer fixed-bottom bg-dark">
+        <footer className="footer bottom-0 bg-dark">
             <div className="container">
                 <a className={styles.icon} href="https://github.com/ArtemDomochka/travel-app/tree/develop" rel="noreferrer" target="_blank">
                     <Github color="white" fontSize="1.75rem"/>
