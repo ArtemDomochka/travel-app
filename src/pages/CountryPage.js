@@ -9,7 +9,7 @@ const CountryPage = props => {
         <div className="container-xxl d-flex flex-column h-100">
             <Header displaySearch={false}/>
 
-            <main className="flex-shrink-0">
+            <main className="flex-shrink-0" style={{marginTop:"85px"}}>
                 <div className="container">
                     Yoo-Yo-Yoo!
                 </div>

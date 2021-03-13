@@ -52,25 +52,25 @@ const HomePage = props => {
         <div className="container-xxl d-flex flex-column h-100"> {/*нужен див или хватит фрагмента? */}
             <Header displaySearch={true}/>
 
-            <main className="flex-shrink-0">
+            <main className="flex-shrink-0" style={{marginTop:"85px"}}>
                 <div className="container-fluid">
                     <div className="row d-flex justify-content-center mx-4">
                         {
-                            countries.map((country, index)=>{
-                                return(
-                                    <div className="px-4 mb-4" style={{width:"300px"}}>
-                                        <NavLink to={'/' + country.name} key={index}>  
-                                            <div className="card">
-                                                <img src={country.imagePath} alt={country.name} className="card-img-top"/>
-                                                <div className="card-body">
-                                                    <h5 className="card-title">{country.name}</h5>
-                                                    <h5 className="card-title">{country.capital}</h5>
+                                countries.map((country, index)=>{
+                                    return(
+                                        <div className="px-4 mb-4" style={{width:"300px"}}>
+                                            <NavLink to={'/' + country.name} key={index}>  
+                                                <div className="card">
+                                                    <img src={country.imagePath} alt={country.name} className="card-img-top"/>
+                                                    <div className="card-body">
+                                                        <h5 className="card-title">{country.name}</h5>
+                                                        <h5 className="card-title">{country.capital}</h5>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </NavLink>
-                                    </div>
-                                )
-                            })
+                                            </NavLink>
+                                        </div>
+                                    )
+                                })
                         }
 
                         
