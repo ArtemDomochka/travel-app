@@ -1,0 +1,23 @@
+.rsLogo{
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+.rsLogo:hover{
+    filter: brightness(1.5);
+}
+
+.icon{
+    margin-right: 20px;
+}
+
+.year{
+    color: white;
+    float: right;
+    margin-top: 3px;
+}
+
+.year:hover{
+    cursor: default;
+    user-select: none;
+}
