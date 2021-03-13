@@ -8,7 +8,7 @@ const Header = props => { // нужно фиксить маржны в свер�
 
     return(
         <header>
-            <nav className="navbar navbar-expand-lg navbar-light bg-primary py-1">
+            <nav className="navbar navbar-expand-lg navbar-light bg-primary py-1 mb-4">
                 <div className="container-fluid"> {/*try w/o fluid*/}
                     <div>
                     <NavLink exact to="/" className="navbar-brand" >

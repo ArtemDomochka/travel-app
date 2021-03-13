@@ -49,16 +49,16 @@ const HomePage = props => {
     ]
 
     return(
-        <div className="container-xxl"> {/*нужен див или хватит фрагмента? */}
+        <div className="container-xxl d-flex flex-column h-100"> {/*нужен див или хватит фрагмента? */}
             <Header displaySearch={true}/>
 
-             
-                <div className="container">
-                    <div className="row">
+            <main className="flex-shrink-0">
+                <div className="container-fluid">
+                    <div className="row d-flex justify-content-center mx-4">
                         {
                             countries.map((country, index)=>{
                                 return(
-                                    <div className="col-sm-3 mb-4">
+                                    <div className="px-4 mb-4" style={{width:"300px"}}>
                                         <NavLink to={'/' + country.name} key={index}>  
                                             <div className="card">
                                                 <img src={country.imagePath} alt={country.name} className="card-img-top"/>
@@ -76,10 +76,9 @@ const HomePage = props => {
                         
                     </div>
                 </div>
+            </main>
+                
             
-            
-
-
             <Footer/>
         </div>
     )

@@ -6,10 +6,14 @@ import Header from '../components/Header'
 const CountryPage = props => {
 
     return(
-        <div className="container-xxl">
+        <div className="container-xxl d-flex flex-column h-100">
             <Header displaySearch={false}/>
 
-            <h1>Country Info</h1>
+            <main className="flex-shrink-0">
+                <div className="container">
+                    Yoo-Yo-Yoo!
+                </div>
+            </main>
 
             <Footer/>
         </div>
