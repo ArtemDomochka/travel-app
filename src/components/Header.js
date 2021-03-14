@@ -3,9 +3,10 @@ import React from 'react'
 import styles from './Header.module.scss'
 import {NavLink} from 'react-router-dom'
 import logo from '../media/logo.png'
+import Search from "./Search"
 
 const Header = props => { // нужно фиксить маржны в свернутом режиме
-
+                            // изменяется размер, когда уберается правый ползунок
     return(
         <header>
             <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-primary py-1">
@@ -29,26 +30,14 @@ const Header = props => { // нужно фиксить маржны в свер�
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar navbar-nav w-100 px-0">
                             {props.displaySearch
-                            ? <li className="nav-item ml-auto">
-                                    <form className="d-flex">
-                                        <div className="input-group">
-                                            <input type="search" className="form-control border-right-0 border" placeholder="Search"
-                                                aria-label="Search" autoFocus
-                                            />
-                                            <div className={"input-group-append " + styles.cross}> {/*бордер решил ситуацию с аутлайнами*/}
-                                                <span className="input-group-text bg-white border-left-0 border">X</span>
-                                            </div>
-                                        </div>   
-                                        <button className="btn btn-light ml-1" type="submit">Search</button>                                 
-                                    </form>
-                                </li>
+                            ? <Search/>
                             :null
                             }
                             
                             <li className="nav-item ml-auto mr-4">
                                 <select className="form-select">
-                                    <option value="ru" defaultValue>RU</option>
-                                    <option value="en">EN</option>
+                                    <option value="en" defaultValue>EN</option>
+                                    <option value="ru">RU</option>
                                     <option value="uk">UK</option>
                                 </select>
                             </li>

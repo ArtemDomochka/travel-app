@@ -1,0 +1,10 @@
+.cross{
+    margin-left:"0px";
+    z-index: 100;
+    user-select: none;
+}
+
+.cross:hover{
+    cursor: pointer;
+    filter: brightness(1.5);
+}
