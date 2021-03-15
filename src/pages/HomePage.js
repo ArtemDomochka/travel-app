@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { NavLink } from 'react-router-dom'
 import {CountriesContext} from '../context/countries/CountriesState'
+import { LanguageContext } from '../context/countries/LanguageState'
 
 const HomePage = props => {
     const {countriesToDisplay, searchSubstring} = useContext(CountriesContext)
@@ -44,10 +45,17 @@ const HomePage = props => {
         })
     }
 
+    const {lang} = useContext(LanguageContext)
+    const warning = {
+        en: "Sorry, we didn't find any ",
+        ru: "Не удалось найти ",
+        uk: "Не вдалося знайти "
+    }
+
     return(
         <div className="container-xxl d-flex flex-column h-100"> {/*нужен див или хватит фрагмента? */}
             <Header displaySearch={true}/>
-            
+
             <main className="flex-shrink-0" style={{marginTop:"85px"}}>
                 <div className="container-fluid">
                     <div className="row d-flex justify-content-center mx-4">
@@ -68,7 +76,8 @@ const HomePage = props => {
                                             </div>
                                         )
                                     })
-                                : <h3 className="w-100">Sorry, We didn't find any "<b>{searchSubstring}"</b></h3>
+                                : <h3 className="w-100">{warning[lang]}"<b>{searchSubstring}</b>"</h3>
+                            
                                 
                         }
 

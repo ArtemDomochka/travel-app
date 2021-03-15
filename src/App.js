@@ -3,11 +3,14 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import CountryPage from './pages/CountryPage'
 import { CountriesState } from './context/countries/CountriesState';
+import { LanguageState } from './context/countries/LanguageState';
 
 
 function App() {
+
   return (
-    <CountriesState>
+    <LanguageState>
+      <CountriesState>
       <BrowserRouter>
         <Switch>
             <Route path="/" exact component={HomePage}/>
@@ -15,6 +18,7 @@ function App() {
         </Switch>
       </BrowserRouter>
     </CountriesState>
+  </LanguageState>
   );
 }
 

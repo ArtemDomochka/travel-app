@@ -5,61 +5,161 @@ export const CountriesContext = createContext()
 
 const SEARCH_COUNTRIES = "SEARCH_COUNTRIES"
 const SEARCH_SUBMIT = "SEARCH_SUBMIT"
+const CHANGE_LANG = "CHANGE_LANG"
 
 export const CountriesState = ({children}) => {
-    const countries = [
+    const countries = {
+        en:
+         [
+            {
+                name: "Spain",
+                capital: "Madrid",
+                imagePath: "https://i.ibb.co/pnj9qP0/america.jpg"
+            },
+            {
+                name: "Australia",
+                capital: "Sydney",
+                imagePath: "https://i.ibb.co/pyyHgmD/australia.jpg" 
+            },
+            {
+                name: "America",
+                capital: "Washington",
+                imagePath: "https://i.ibb.co/pnj9qP0/america.jpg" 
+            },
+            {
+                name: "Japan",
+                capital: "Tokyo",
+                imagePath: "https://i.ibb.co/WFt0L2W/japan.jpg" 
+            },
+            {
+                name: "China",
+                capital: "Peking",
+                imagePath: "https://i.ibb.co/ct3tFH3/china.jpg" 
+            },
+            {
+                name: "Italy",
+                capital: "Rome",
+                imagePath: "https://i.ibb.co/5F9gRbF/new-Zeland.jpg" 
+            },
+            {
+                name: "Egypt",
+                capital: "Cairo",
+                imagePath: "https://i.ibb.co/WPv8GDQ/london.jpg" 
+            },
+            {
+                name: "German",
+                capital: "Berlin",
+                imagePath: "https://i.ibb.co/pZfnkm6/german.jpg" 
+            },
+            {
+                name: "France",
+                capital: "Paris",
+                imagePath: "https://i.ibb.co/7b9crkH/france.jpg" 
+            },
+    ],
+    ru: [
         {
-            name: "Spain",
-            capital: "Madrid",
+            name: "Испания",
+            capital: "Мадрид",
             imagePath: "https://i.ibb.co/pnj9qP0/america.jpg"
         },
         {
-            name: "Australia",
-            capital: "Sydney",
+            name: "Австралия",
+            capital: "Сидней",
             imagePath: "https://i.ibb.co/pyyHgmD/australia.jpg" 
         },
         {
-            name: "America",
-            capital: "Washington",
+            name: "Америка",
+            capital: "Вашингтон",
             imagePath: "https://i.ibb.co/pnj9qP0/america.jpg" 
         },
         {
-            name: "Japan",
-            capital: "Tokyo",
+            name: "Япония",
+            capital: "Токио",
             imagePath: "https://i.ibb.co/WFt0L2W/japan.jpg" 
         },
         {
-            name: "China",
-            capital: "Peking",
+            name: "Китай",
+            capital: "Пекин",
             imagePath: "https://i.ibb.co/ct3tFH3/china.jpg" 
         },
         {
-            name: "Italy",
-            capital: "Rome",
+            name: "Италия",
+            capital: "Рим",
             imagePath: "https://i.ibb.co/5F9gRbF/new-Zeland.jpg" 
         },
         {
-            name: "Egypt",
-            capital: "Cairo",
+            name: "Египт",
+            capital: "Каир",
             imagePath: "https://i.ibb.co/WPv8GDQ/london.jpg" 
         },
         {
-            name: "German",
-            capital: "Berlin",
+            name: "Германия",
+            capital: "Берлин",
             imagePath: "https://i.ibb.co/pZfnkm6/german.jpg" 
         },
         {
-            name: "France",
-            capital: "Paris",
+            name: "Франция",
+            capital: "Париж",
+            imagePath: "https://i.ibb.co/7b9crkH/france.jpg" 
+        },
+    ],
+    uk: [
+        {
+            name: "Іспанія",
+            capital: "Мадрид",
+            imagePath: "https://i.ibb.co/pnj9qP0/america.jpg"
+        },
+        {
+            name: "Австралія",
+            capital: "Сідней",
+            imagePath: "https://i.ibb.co/pyyHgmD/australia.jpg" 
+        },
+        {
+            name: "Америка",
+            capital: "Вашингтон",
+            imagePath: "https://i.ibb.co/pnj9qP0/america.jpg" 
+        },
+        {
+            name: "Японія",
+            capital: "Токіо",
+            imagePath: "https://i.ibb.co/WFt0L2W/japan.jpg" 
+        },
+        {
+            name: "Китай",
+            capital: "Пекін",
+            imagePath: "https://i.ibb.co/ct3tFH3/china.jpg" 
+        },
+        {
+            name: "Італія",
+            capital: "Рим",
+            imagePath: "https://i.ibb.co/5F9gRbF/new-Zeland.jpg" 
+        },
+        {
+            name: "Єгипт",
+            capital: "Каір",
+            imagePath: "https://i.ibb.co/WPv8GDQ/london.jpg" 
+        },
+        {
+            name: "Германія",
+            capital: "Берлін",
+            imagePath: "https://i.ibb.co/pZfnkm6/german.jpg" 
+        },
+        {
+            name: "Франція",
+            capital: "Париж",
             imagePath: "https://i.ibb.co/7b9crkH/france.jpg" 
         },
     ]
+}
 
-    countries.sort((c1,c2)=>c1.name>c2.name?1:0)
+    countries.en.sort((c1,c2)=>c1.name>c2.name?1:0)
+    countries.ru.sort((c1,c2)=>c1.name>c2.name?1:0)
+    countries.uk.sort((c1,c2)=>c1.name>c2.name?1:0)
 
     const initState = {
-        countries: countries,
-        countriesToDisplay: countries,
+        countries: countries.en,
+        countriesToDisplay: countries.en,
         searchSubstring: ''
     }
 
@@ -71,6 +171,11 @@ export const CountriesState = ({children}) => {
             case SEARCH_SUBMIT:
                 return {
                     ...state, countriesToDisplay: action.payload
+                }
+            case CHANGE_LANG:
+                return {
+                    ...state, countries: action.payload.countries,
+                    countriesToDisplay: action.payload.countriesToDisplay
                 }
             default:
                 throw new Error()
@@ -132,10 +237,23 @@ export const CountriesState = ({children}) => {
         })
     }
 
+    const changeLang = lang => { //ну сравнение тут идеет по картинкам, да и вообще нужно переделать весь json
+        let pathes = state.countriesToDisplay.map(country=>country.imagePath)
+        let countriesToDisplay = countries[lang].filter(country=>pathes.includes(country.imagePath))
+        dispatch({
+            type: CHANGE_LANG,
+            payload:{
+                countries: countries[lang],
+            countriesToDisplay: countriesToDisplay
+            }
+        })
+    }
+
     const {countriesToDisplay, searchSubstring} = state //это деструктуризация обьекта или что?
 
     return(
-        <CountriesContext.Provider value={{countriesToDisplay, searchSubstring, search, searchSubmit}}> 
+        <CountriesContext.Provider 
+            value={{countriesToDisplay, searchSubstring, search, searchSubmit, changeLang}}> 
             {children}
         </CountriesContext.Provider>
     )
