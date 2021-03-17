@@ -9,12 +9,18 @@
     "bootstrap": "^4.6.0",
     "bootstrap-icons": "^1.4.0",
     "font-awesome": "^4.7.0",
+    "leaflet": "^1.7.1",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-bootstrap-icons": "^1.4.0",
     "react-dom": "^17.0.1",
+    "react-image-gallery": "^1.0.9",
+    "react-leaflet": "^3.1.0",
+    "react-player": "^2.9.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "redux": "^4.0.5",
+    "video-react": "^0.14.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
