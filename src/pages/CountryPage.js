@@ -4,55 +4,55 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import ReactPlayer from 'react-player/youtube'
 import './Gallery.scss'
-//import image from '../media/america.jpeg'
-//import ImageGallery from 'react-image-gallery'
+import image from '../media/america.jpeg'
+import ImageGallery from 'react-image-gallery'
 //import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 
 const CountryPage = ({match}) => {
     //const countryName = match.params.country
     
-    // const images = [
-    //     {
-    //         original: image,
-    //         thumbnail: image,
-    //     },
-    //     {
-    //         original: image,
-    //         thumbnail: image,
-    //     },
-    //     {
-    //         original: image,
-    //         thumbnail: image,
-    //     },
-    //     {
-    //         original: image,
-    //         thumbnail: image,
-    //     },
-    //     {
-    //         original: image,
-    //         thumbnail: image,
-    //     },
-    //     {
-    //         original: image,
-    //         thumbnail: image,
-    //     },
-    //     {
-    //         original: image,
-    //         thumbnail: image,
-    //     },
-    //     {
-    //         original: image,
-    //         thumbnail: image,
-    //     },
-    //     {
-    //         original: image,
-    //         thumbnail: image,
-    //     },
-    //     {
-    //         original: image,
-    //         thumbnail: image,
-    //     }        
-    // ]
+    const images = [
+        {
+            original: image,
+            thumbnail: image,
+        },
+        {
+            original: image,
+            thumbnail: image,
+        },
+        {
+            original: image,
+            thumbnail: image,
+        },
+        {
+            original: image,
+            thumbnail: image,
+        },
+        {
+            original: image,
+            thumbnail: image,
+        },
+        {
+            original: image,
+            thumbnail: image,
+        },
+        {
+            original: image,
+            thumbnail: image,
+        },
+        {
+            original: image,
+            thumbnail: image,
+        },
+        {
+            original: image,
+            thumbnail: image,
+        },
+        {
+            original: image,
+            thumbnail: image,
+        }        
+    ]
 
     return(
         <div className="container-xxl d-flex flex-column h-100">
@@ -70,13 +70,13 @@ const CountryPage = ({match}) => {
                     </div>
 
                    
-                    {/* <ImageGallery
+                    <ImageGallery
                         items={images}
                         slideInterval={1000}
                         
                     />
                     
-                    <div className={styles.mapBox} id="mapid">
+                    {/* <div className={styles.mapBox} id="mapid">
                     <MapContainer 
                         center={[51.505, -0.09]}
                         zoom={5}
