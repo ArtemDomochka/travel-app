@@ -1,0 +1,21 @@
+.widgetBox{
+    width: 200px;
+    height: 120px;
+    margin: auto;
+    margin-bottom: 30px;
+    text-align: center;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    color: whitesmoke;
+    border-radius: 5px;
+    background: linear-gradient(#09C6F9, #045DE9);
+    filter: brightness(1.1);
+}
+
+.loadingBox{
+    width: 200px;
+    height: 120px;
+    margin: auto;
+    margin-bottom: 30px;
+    background-color: gray;
+}

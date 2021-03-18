@@ -1,0 +1,30 @@
+.weatherBox{
+    width: 220px;
+    height: 190px;
+    margin: auto;
+    margin-bottom: 50px;
+    background: linear-gradient(#09C6F9, #045DE9);
+    border-radius: 10px;
+    filter:brightness(1.1);
+    font-family: 'Courier New', Courier, monospace;
+    color: whitesmoke;
+}
+
+.loadingBox{
+    width: 215px;
+    height: 190px;
+    margin: auto;
+    background-color: gray;
+}
+
+ul{
+    list-style: none;
+    padding-left: 0;
+    text-align: center;
+}
+
+.title{
+    display: inline-flex;
+    vertical-align: middle;
+    width: 100px;
+}

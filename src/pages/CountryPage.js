@@ -9,7 +9,9 @@ import ImageGallery from 'react-image-gallery'
 import { MapContainer, TileLayer, Marker, GeoJSON } from 'react-leaflet'
 import 'leaflet-fullscreen/dist/Leaflet.fullscreen'
 import 'leaflet-fullscreen/dist/leaflet.fullscreen.css'
-//import PanoStreetView from "react-leaflet-street-view";
+import Weather from '../components/Weather'
+//import DateWidget from '../components/DateWidget'
+//import CurrencyWidget from '../components/CurrencyWidget'
 
 const CountryPage = ({match}) => {
     //const countryName = match.params.country
@@ -85,6 +87,9 @@ const CountryPage = ({match}) => {
 
             <main className="flex-shrink-0" style={{marginTop:"85px"}}>
                 <div className="container-fluid">
+
+                    <Weather/>
+
                     <div className={styles.playerBox}>
                         <ReactPlayer
                             url="https://www.youtube.com/watch?v=zKaH1dCooQg"
