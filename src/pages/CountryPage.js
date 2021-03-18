@@ -11,7 +11,7 @@ import 'leaflet-fullscreen/dist/Leaflet.fullscreen'
 import 'leaflet-fullscreen/dist/leaflet.fullscreen.css'
 import Weather from '../components/Weather'
 import DateWidget from '../components/DateWidget'
-//import CurrencyWidget from '../components/CurrencyWidget'
+import CurrencyWidget from '../components/CurrencyWidget'
 
 const CountryPage = ({match}) => {
     //const countryName = match.params.country
@@ -87,6 +87,8 @@ const CountryPage = ({match}) => {
 
             <main className="flex-shrink-0" style={{marginTop:"85px"}}>
                 <div className="container-fluid">
+
+                    <CurrencyWidget/>
 
                     <DateWidget/>
 
