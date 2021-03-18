@@ -10,7 +10,7 @@ import { MapContainer, TileLayer, Marker, GeoJSON } from 'react-leaflet'
 import 'leaflet-fullscreen/dist/Leaflet.fullscreen'
 import 'leaflet-fullscreen/dist/leaflet.fullscreen.css'
 import Weather from '../components/Weather'
-//import DateWidget from '../components/DateWidget'
+import DateWidget from '../components/DateWidget'
 //import CurrencyWidget from '../components/CurrencyWidget'
 
 const CountryPage = ({match}) => {
@@ -87,6 +87,8 @@ const CountryPage = ({match}) => {
 
             <main className="flex-shrink-0" style={{marginTop:"85px"}}>
                 <div className="container-fluid">
+
+                    <DateWidget/>
 
                     <Weather/>
 
