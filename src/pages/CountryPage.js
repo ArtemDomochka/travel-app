@@ -1,139 +1,70 @@
-import React, { useEffect, useState } from 'react'
 import styles from './CountryPage.module.scss'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import ReactPlayer from 'react-player/youtube'
-import './Gallery.scss'
-import image from '../media/america.jpeg'
-import ImageGallery from 'react-image-gallery'
-import { MapContainer, TileLayer, Marker, GeoJSON } from 'react-leaflet'
-import 'leaflet-fullscreen/dist/Leaflet.fullscreen'
-import 'leaflet-fullscreen/dist/leaflet.fullscreen.css'
 import Weather from '../components/Weather'
 import DateWidget from '../components/DateWidget'
 import CurrencyWidget from '../components/CurrencyWidget'
+import CustomMap from '../components/CustomMap'
+//import CustomPlayer from '../components/CustomPlayer'
+import OtherGallery from '../components/OtherGallery'
+import { useContext, useEffect, useState } from 'react'
+import { LanguageContext } from '../context/countries/LanguageState'
+import { FileX } from 'react-bootstrap-icons'
 
 const CountryPage = ({match}) => {
-    //const countryName = match.params.country
+    const countryName = match.params.country
     
-    const images = [
-        {
-            original: image,
-            thumbnail: image,
-        },
-        {
-            original: image,
-            thumbnail: image,
-        },
-        {
-            original: image,
-            thumbnail: image,
-        },
-        {
-            original: image,
-            thumbnail: image,
-        },
-        {
-            original: image,
-            thumbnail: image,
-        },
-        {
-            original: image,
-            thumbnail: image,
-        },
-        {
-            original: image,
-            thumbnail: image,
-        },
-        {
-            original: image,
-            thumbnail: image,
-        },
-        {
-            original: image,
-            thumbnail: image,
-        },
-        {
-            original: image,
-            thumbnail: image,
-        }        
-    ]
-
-    const [geoJSON, setGeoJSON] = useState(null)
-    
-    const fetchJSON = () => {
-        fetch(
-            "https://raw.githubusercontent.com/inmagik/world-countries/master/countries/GBR.geojson"
-        )
-        .then(resp=>resp.json())
-        .then(data=>setGeoJSON(data))
-    }
+    const {lang} = useContext(LanguageContext)
+    const [country, setCountry] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     useEffect(()=>{
-        fetchJSON()
-    },[])
-
-    const setStyle = (feature) => {
-        return{
-            fillColor: "yellow",
-            fillOpacity: 0.1,
-            color: "red"
+        const fetchCountry = () => {
+            setLoading(true)
+    
+            fetch(`/api/addCountryPage/${countryName}/${lang}`)
+            .then(res=>res.json())
+            .then(res=>setCountry(JSON.parse(res)))
+    
+            setLoading(false)
         }
-    }
+
+        fetchCountry()
+
+    },[countryName, lang])
 
     return(
         <div className="container-xxl d-flex flex-column h-100">
             <Header displaySearch={false}/>
 
             <main className="flex-shrink-0" style={{marginTop:"85px"}}>
-                <div className="container-fluid">
+                {
+                    !loading && country
+                    ? <div className="container-fluid">      
+                        <h1>{country.name}. {country.capital}.</h1>
+                        <div style={{display:'flex'}}>
+                            <img src={country.imgPath} alt="best pct" width="200px"/>
+                            <p style={{paddingLeft:'10px'}}>{country.description}</p>
+                        </div>
 
-                    <CurrencyWidget/>
+                        <div>
+                            <Weather/>
+                            <CurrencyWidget/>
+                            <DateWidget/>
+                        </div>
 
-                    <DateWidget/>
-
-                    <Weather/>
-
-                    <div className={styles.playerBox}>
-                        <ReactPlayer
-                            url="https://www.youtube.com/watch?v=zKaH1dCooQg"
-                            controls={true}
-                            width='100%'
-                            height='100%'
-                        />
-                    </div>
-
-                   
-                    <ImageGallery
-                        items={images}
-                        slideInterval={1000}
                         
-                    />
-                    
-                    <div className={styles.mapBox} id="mapid">
-                        <MapContainer 
-                            center={[51.505, -0.09]}
-                            zoom={5}
-                            scrollWheelZoom={true}
-                            style={{width:"100%", height:"100%"}}
-                            fullscreenControl={true}
-                        >
-                            <TileLayer
-                                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                                url={`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`}
-                            />
-                            
-                            <Marker position={[51.505, -0.09]}/>
-
-                            {geoJSON && <GeoJSON style={setStyle} data={geoJSON}/>}
-
-                        </MapContainer>
-                    </div>
-
-
-
-
-                </div>
+                        {/* <CurrencyWidget/>
+                        <DateWidget/> */}
+                        {/* <Weather/> */}                      
+                        {/* <CustomPlayer/> */}                   
+                        {/* <CustomMap/>
+                        <p>asdasdsa</p>
+                        <OtherGallery/> */}
+                      </div>
+                    : <p style={{textAlign:'center'}}>Loading...</p>
+                }
+                
             </main>
 
             <Footer/>

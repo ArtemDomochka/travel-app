@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import CountryPage from './pages/CountryPage'
 import { CountriesState } from './context/countries/CountriesState';
 import { LanguageState } from './context/countries/LanguageState';
+import AdminPage from './pages/AdminPage'
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <BrowserRouter>
         <Switch>
             <Route path="/" exact component={HomePage}/>
+            <Route path="/AdminPage" exact component={AdminPage}/>
             <Route path="/:country" component={CountryPage}/>
         </Switch>
       </BrowserRouter>

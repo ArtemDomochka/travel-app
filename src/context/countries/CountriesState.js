@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react'
+import React, {useEffect, useReducer, useState} from 'react'
 import {createContext} from 'react'
 
 export const CountriesContext = createContext()
@@ -8,150 +8,31 @@ const SEARCH_SUBMIT = "SEARCH_SUBMIT"
 const CHANGE_LANG = "CHANGE_LANG"
 
 export const CountriesState = ({children}) => {
-    const countries = {
-        en:
-         [
-            {
-                name: "Spain",
-                capital: "Madrid",
-                imagePath: "https://i.ibb.co/pnj9qP0/america.jpg"
-            },
-            {
-                name: "Australia",
-                capital: "Sydney",
-                imagePath: "https://i.ibb.co/pyyHgmD/australia.jpg" 
-            },
-            {
-                name: "America",
-                capital: "Washington",
-                imagePath: "https://i.ibb.co/pnj9qP0/america.jpg" 
-            },
-            {
-                name: "Japan",
-                capital: "Tokyo",
-                imagePath: "https://i.ibb.co/WFt0L2W/japan.jpg" 
-            },
-            {
-                name: "China",
-                capital: "Peking",
-                imagePath: "https://i.ibb.co/ct3tFH3/china.jpg" 
-            },
-            {
-                name: "Italy",
-                capital: "Rome",
-                imagePath: "https://i.ibb.co/5F9gRbF/new-Zeland.jpg" 
-            },
-            {
-                name: "Egypt",
-                capital: "Cairo",
-                imagePath: "https://i.ibb.co/WPv8GDQ/london.jpg" 
-            },
-            {
-                name: "German",
-                capital: "Berlin",
-                imagePath: "https://i.ibb.co/pZfnkm6/german.jpg" 
-            },
-            {
-                name: "France",
-                capital: "Paris",
-                imagePath: "https://i.ibb.co/7b9crkH/france.jpg" 
-            },
-    ],
-    ru: [
-        {
-            name: "Испания",
-            capital: "Мадрид",
-            imagePath: "https://i.ibb.co/pnj9qP0/america.jpg"
-        },
-        {
-            name: "Австралия",
-            capital: "Сидней",
-            imagePath: "https://i.ibb.co/pyyHgmD/australia.jpg" 
-        },
-        {
-            name: "Америка",
-            capital: "Вашингтон",
-            imagePath: "https://i.ibb.co/pnj9qP0/america.jpg" 
-        },
-        {
-            name: "Япония",
-            capital: "Токио",
-            imagePath: "https://i.ibb.co/WFt0L2W/japan.jpg" 
-        },
-        {
-            name: "Китай",
-            capital: "Пекин",
-            imagePath: "https://i.ibb.co/ct3tFH3/china.jpg" 
-        },
-        {
-            name: "Италия",
-            capital: "Рим",
-            imagePath: "https://i.ibb.co/5F9gRbF/new-Zeland.jpg" 
-        },
-        {
-            name: "Египт",
-            capital: "Каир",
-            imagePath: "https://i.ibb.co/WPv8GDQ/london.jpg" 
-        },
-        {
-            name: "Германия",
-            capital: "Берлин",
-            imagePath: "https://i.ibb.co/pZfnkm6/german.jpg" 
-        },
-        {
-            name: "Франция",
-            capital: "Париж",
-            imagePath: "https://i.ibb.co/7b9crkH/france.jpg" 
-        },
-    ],
-    uk: [
-        {
-            name: "Іспанія",
-            capital: "Мадрид",
-            imagePath: "https://i.ibb.co/pnj9qP0/america.jpg"
-        },
-        {
-            name: "Австралія",
-            capital: "Сідней",
-            imagePath: "https://i.ibb.co/pyyHgmD/australia.jpg" 
-        },
-        {
-            name: "Америка",
-            capital: "Вашингтон",
-            imagePath: "https://i.ibb.co/pnj9qP0/america.jpg" 
-        },
-        {
-            name: "Японія",
-            capital: "Токіо",
-            imagePath: "https://i.ibb.co/WFt0L2W/japan.jpg" 
-        },
-        {
-            name: "Китай",
-            capital: "Пекін",
-            imagePath: "https://i.ibb.co/ct3tFH3/china.jpg" 
-        },
-        {
-            name: "Італія",
-            capital: "Рим",
-            imagePath: "https://i.ibb.co/5F9gRbF/new-Zeland.jpg" 
-        },
-        {
-            name: "Єгипт",
-            capital: "Каір",
-            imagePath: "https://i.ibb.co/WPv8GDQ/london.jpg" 
-        },
-        {
-            name: "Германія",
-            capital: "Берлін",
-            imagePath: "https://i.ibb.co/pZfnkm6/german.jpg" 
-        },
-        {
-            name: "Франція",
-            capital: "Париж",
-            imagePath: "https://i.ibb.co/7b9crkH/france.jpg" 
-        },
-    ]
-}
+    const [countries, setCountries] = useState({en:[],ru:[],uk:[]})
+    const [homeLoading, setHomeLoading] = useState(false)
+
+    const loadCountries =  () => {
+        setHomeLoading(true)
+
+        fetch('api/getCountries')
+        .then(res=>res.json())
+        .then(res=>{
+            res = JSON.parse(res[0].homePage)
+            setCountries(res)
+            dispatch({
+                type: CHANGE_LANG,
+                payload:{
+                    countries: res.en,
+                    countriesToDisplay: res.en
+                }
+            })            
+        })
+        setHomeLoading(false)
+    }
+
+    useEffect(()=>{
+        loadCountries()
+    },[])
 
     countries.en.sort((c1,c2)=>c1.name>c2.name?1:0)
     countries.ru.sort((c1,c2)=>c1.name>c2.name?1:0)
@@ -238,6 +119,7 @@ export const CountriesState = ({children}) => {
     }
 
     const changeLang = lang => { //ну сравнение тут идеет по картинкам, да и вообще нужно переделать весь json
+        if(!countries.en.length) return
         let pathes = state.countriesToDisplay.map(country=>country.imagePath)
         let countriesToDisplay = countries[lang].filter(country=>pathes.includes(country.imagePath))
         dispatch({
@@ -253,7 +135,7 @@ export const CountriesState = ({children}) => {
 
     return(
         <CountriesContext.Provider 
-            value={{countriesToDisplay, searchSubstring, search, searchSubmit, changeLang}}> 
+            value={{countriesToDisplay, searchSubstring, homeLoading, search, searchSubmit, changeLang}}> 
             {children}
         </CountriesContext.Provider>
     )
