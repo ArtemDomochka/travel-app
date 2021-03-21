@@ -6,20 +6,19 @@ const CurrencyWidget = props => {
 
     const [currencyRates, setCurrencyRates] = useState(null)
     const {lang} = useContext(LanguageContext)
-    const countryCurrency = 'CZK'
 
     useEffect(()=>{
-        fetch(`https://api.exchangeratesapi.io/latest?base=USD&symbols=${countryCurrency},EUR,RUB,USD`)
+        fetch(`https://api.exchangeratesapi.io/latest?base=USD&symbols=${props.countryCurrency},EUR,RUB,USD`)
         .then(response=>response.json())
         .then(rates=>{
             setCurrencyRates({
-                usd: (rates.rates[countryCurrency] / rates.rates.USD).toFixed(2),
-                eur: (rates.rates[countryCurrency] / rates.rates.EUR).toFixed(2),
-                rub: (rates.rates[countryCurrency] / rates.rates.RUB).toFixed(2)
+                usd: (rates.rates[props.countryCurrency] / rates.rates.USD).toFixed(2),
+                eur: (rates.rates[props.countryCurrency] / rates.rates.EUR).toFixed(2),
+                rub: (rates.rates[props.countryCurrency] / rates.rates.RUB).toFixed(2)
             })
         })
         
-    },[]) /*pochemu bez [] owibka v console?*/
+    },[props]) /*pochemu bez [] owibka v console?*/
     
     const localization = {
         en: {
@@ -41,11 +40,11 @@ const CurrencyWidget = props => {
         ? <div className={styles.widgetBox}>
             {localization[lang].exchangeRates}:
             <br/>
-            {countryCurrency} {localization[lang].by} USD: {currencyRates.usd}
+            {props.countryCurrency} {localization[lang].by} USD: {currencyRates.usd}
             <br/>
-            {countryCurrency} {localization[lang].by} EUR: {currencyRates.eur}
+            {props.countryCurrency} {localization[lang].by} EUR: {currencyRates.eur}
             <br/>
-            {countryCurrency} {localization[lang].by} RUB: {currencyRates.rub}
+            {props.countryCurrency} {localization[lang].by} RUB: {currencyRates.rub}
           </div>
         : <div className={styles.loadingBox}>
 

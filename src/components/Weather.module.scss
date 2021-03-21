@@ -1,8 +1,7 @@
 .weatherBox{
     width: 220px;
     height: 190px;
-    margin: auto;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     background: linear-gradient(#09C6F9, #045DE9);
     border-radius: 10px;
     filter:brightness(1.1);
@@ -11,10 +10,10 @@
 }
 
 .loadingBox{
-    width: 215px;
+    width: 220px;
     height: 190px;
-    margin: auto;
     background-color: gray;
+    margin-bottom: 10px;
 }
 
 ul{

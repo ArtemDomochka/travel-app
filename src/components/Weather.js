@@ -6,15 +6,17 @@ const Weather = props => {
     const [forecast, setForecast] = useState(null)
     const {lang} = useContext(LanguageContext)
     
-    const fetchForecast = () => {
-        fetch(`https://api.weatherbit.io/v2.0/current?lang=${lang}&city=Washington&country=US&key=c42ecdad2a2943e78995f71c153c7012`)
-        .then(response=>response.json())
-        .then(forecast=>setForecast(forecast))
-    }
-
+    
     useEffect(()=>{
+        const fetchForecast = () => {
+            fetch(`https://api.weatherbit.io/v2.0/current?lang=${lang}&city=${props.city}&country=${props.country}&key=c42ecdad2a2943e78995f71c153c7012`)
+            .then(response=>response.json())
+            .then(forecast=>setForecast(forecast))
+        }
+    
+
         fetchForecast()
-    })
+    },[lang, props])
 
     const localization = {
         en:{
@@ -38,7 +40,7 @@ const Weather = props => {
         
         forecast
         ? <div className={styles.weatherBox}>
-            <img src={require("../media/icons/a01d.png").default} alt="wather icon" width="100x"/>
+            <img src={require(`../media/icons/${forecast.data[0].weather.icon}.png`).default} alt="wather icon" width="100x"/>
             <div className={styles.title}>{forecast.data[0].weather.description}</div>
             <ul>
                 <li>{localization[lang].temp}: {forecast && forecast.data[0].temp}`C</li>

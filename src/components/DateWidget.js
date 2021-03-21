@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { LanguageContext } from '../context/countries/LanguageState'
 import styles from './DateWidget.module.scss'
 
-const DateWidget = prosp => {
+const DateWidget = props => {
 
     const [time, setTime] = useState(new Date())
 
@@ -24,15 +24,13 @@ const DateWidget = prosp => {
         uk: "uk-UA"
     }
 
-    const timeZone = 'Australia/Sydney'
-
     return(
         <div className={styles.dateBox}>
             {new Date().getDate()} {new Date().toLocaleDateString(localization[lang], {month:'long'})}
             <br/>
             {new Date().toLocaleDateString(localization[lang], {weekday:'long'})} {/*pochmu tut ne srabotal replace?*/}
             <br/>
-            {time.toLocaleTimeString(localization[lang], {timeZone:timeZone})}
+            {time.toLocaleTimeString(localization[lang], {timeZone:props.timeZone})}
         </div>
     )
 }

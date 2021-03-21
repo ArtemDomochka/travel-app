@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import styles from './CustomMap.module.scss'
-import { MapContainer, TileLayer, Marker, GeoJSON } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet'
 import 'leaflet-fullscreen/dist/Leaflet.fullscreen' //por9dok importov imeet zna4enie
 import 'leaflet-fullscreen/dist/leaflet.fullscreen.css' 
 
@@ -9,17 +9,17 @@ const CustomMap = props => {
 
     const [geoJSON, setGeoJSON] = useState(null)
     
-    const fetchJSON = () => {
-        fetch(
-            "https://raw.githubusercontent.com/inmagik/world-countries/master/countries/GBR.geojson"
-        )
-        .then(resp=>resp.json())
-        .then(data=>setGeoJSON(data))
-    }
-
     useEffect(()=>{
+        const fetchJSON = () => {
+            fetch(
+                `https://raw.githubusercontent.com/inmagik/world-countries/master/countries/${props.atr}.geojson`
+            )
+            .then(resp=>resp.json())
+            .then(data=>setGeoJSON(data))
+        }
+    
         fetchJSON()
-    },[])
+    },[props.atr])
 
     const setStyle = (feature) => {
         return{
@@ -32,9 +32,10 @@ const CustomMap = props => {
     return(
         <div className={styles.mapBox} id="mapid">
             <MapContainer 
-                center={[51.505, -0.09]}
-                zoom={5}
-                scrollWheelZoom={true}
+                // center={[51.505, -0.09]}
+                center={[props.coords[0], props.coords[1]]}
+                zoom={6}
+                //scrollWheelZoom={true}
                 style={{width:"100%", height:"100%"}}
                 fullscreenControl={true}
             >
@@ -43,7 +44,13 @@ const CustomMap = props => {
                     url={`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`}
                 />
                 
-                <Marker position={[51.505, -0.09]}/>
+                <Marker
+                    position={[props.coords[0], props.coords[1]]}
+                >
+                    <Popup>
+                        {props.capital}
+                    </Popup>
+                </Marker>
 
                 {geoJSON && <GeoJSON style={setStyle} data={geoJSON}/>}
 
