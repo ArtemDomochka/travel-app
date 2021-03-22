@@ -63,5 +63,6 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.13.0"
-  }
+  },
+  "proxy":"https://arcane-citadel-11977.herokuapp.com/"
 }
