@@ -15,9 +15,9 @@ function App() {
         <CountriesState>
           <BrowserRouter>
             <Switch>
-                <Route path="https://artemdomochka.github.io/travel-app/" exact component={HomePage}/>
-                <Route path="https://artemdomochka.github.io/travel-app/AdminPage" exact component={AdminPage}/>
-                <Route path="https://artemdomochka.github.io/travel-app/travel-app/:country" component={CountryPage}/>
+                <Route path="/" exact component={HomePage}/>
+                <Route path="/AdminPage" exact component={AdminPage}/>
+                <Route path="/:country" component={CountryPage}/>
             </Switch>
           </BrowserRouter>
         </CountriesState>
