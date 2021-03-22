@@ -26,8 +26,12 @@ const Search = props => {
         <li className="nav-item ml-auto">
             <form className="d-flex" onSubmit={event=>event.preventDefault()}>
                 <div className="input-group">
-                    <input type="text" className="form-control border-right-0 border" placeholder={content[lang].placeholder}
-                        aria-label="Search" autoFocus
+                    <input 
+                        type="text"
+                        className="form-control border-right-0 border"
+                        placeholder={content[lang].placeholder}
+                        aria-label="Search"
+                        autoFocus
                         value={searchSubstring}
                         onChange={event=>{search(event.target.value)}}
                         onKeyPress={event=>event.key==="Enter"?searchSubmit():null}

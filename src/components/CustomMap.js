@@ -32,7 +32,6 @@ const CustomMap = props => {
     return(
         <div className={styles.mapBox} id="mapid">
             <MapContainer 
-                // center={[51.505, -0.09]}
                 center={[props.coords[0], props.coords[1]]}
                 zoom={6}
                 //scrollWheelZoom={true}

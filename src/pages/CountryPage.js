@@ -9,6 +9,7 @@ import CustomPlayer from '../components/CustomPlayer'
 import OtherGallery from '../components/OtherGallery'
 import { useContext, useEffect, useState } from 'react'
 import { LanguageContext } from '../context/countries/LanguageState'
+import Comments from '../components/Comments'
 
 const CountryPage = ({match}) => {
     const countryName = match.params.country
@@ -36,6 +37,7 @@ const CountryPage = ({match}) => {
             <Header displaySearch={false}/>
 
             <main className="flex-shrink-0" style={{marginTop:"85px"}}>
+
                 {
                     !loading && country
                     ? <div className="container-fluid">    
@@ -83,7 +85,9 @@ const CountryPage = ({match}) => {
                             />
                         </div>
 
-                        
+                        <br/>
+
+                        <Comments country={country.name}/>
                         
 
                       </div>

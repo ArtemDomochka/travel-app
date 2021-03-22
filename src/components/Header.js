@@ -6,12 +6,14 @@ import logo from '../media/logo.png'
 import Search from "./Search"
 import {LanguageContext} from '../context/countries/LanguageState'
 import { CountriesContext } from "../context/countries/CountriesState"
+import { LogInContext } from "../context/countries/LogInState"
 
 const Header = props => { // нужно фиксить маржны в свернутом режиме
                             // изменяется размер, когда уберается правый ползунок
 
     const {lang, setLang} = useContext(LanguageContext)
     const {changeLang} = useContext(CountriesContext)
+    const {setShowLogIn, setShowSignIn, isLogedIn, userInfo, logOut} = useContext(LogInContext)
 
     const handleLangChange = newLang => {
         setLang(newLang)
@@ -26,7 +28,8 @@ const Header = props => { // нужно фиксить маржны в свер�
                 en: "EN",
                 ru: "RU",
                 uk: "UK"
-            }
+            },
+            logOut: "Log Out"
         },
         ru:{
             signUp: "Регистрация",
@@ -35,7 +38,8 @@ const Header = props => { // нужно фиксить маржны в свер�
                 en: "АНГ",
                 ru: "РУ",
                 uk: "УК"
-            }
+            },
+            logOut: "Выйти"
         },
         uk:{
             signUp: "Регістрація",
@@ -44,8 +48,9 @@ const Header = props => { // нужно фиксить маржны в свер�
                 en: "АНГ",
                 ru: "РОС",
                 uk: "УК"
-            }
-        }
+            },
+            logOut: "Вихід"
+        },
     }
 
     return(
@@ -83,20 +88,53 @@ const Header = props => { // нужно фиксить маржны в свер�
                                     <option value="uk">{content[lang].select.uk}</option>
                                 </select>
                             </li>
-                            <li className="nav-item">
-                                <button className="btn btn-light mr-1" type="button">{content[lang].signIn}</button>
-                            </li>
-                            <li className="nav-item">
-                                <button className="btn btn-light" type="button">{content[lang].signUp}</button>
-                            </li>   
+                            
+                            {
+                                !isLogedIn
+                                ? <>
+                                    <li className="nav-item">
+                                        <button
+                                            className="btn btn-light mr-1"
+                                            type="button"
+                                            onClick={()=>setShowLogIn(true)}
+                                        >
+                                            {content[lang].signIn}
+                                        </button>
+                                    </li>
+                                    <li className="nav-item">
+                                        <button
+                                            className="btn btn-light"
+                                            type="button"
+                                            onClick={()=>setShowSignIn(true)}
+                                        >
+                                            {content[lang].signUp}
+                                        </button>
+                                    </li>  
+                                  </>
+                                : <>
+                                    <li className="nav-item">
+                                        <button
+                                            className="btn btn-light mr-1"
+                                            type="button"
+                                            onClick={logOut}
+                                        >
+                                            {content[lang].logOut}
+                                        </button>
+                                    </li>
+                                    <li className="nav-item">
+                                        <img src={userInfo.photoPath} alt="avatar" width="40px" height="40px"/>
+                                    </li>
+                                  </>
+                            }
+                             
+  
                         </ul>
 
                     </div>
-                    
-                    
 
                 </div>
             </nav>
+
         </header>
     )
 }

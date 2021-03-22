@@ -1,0 +1,23 @@
+.box{
+    width: 100%;
+    max-width: 800px;
+    padding: 15px;
+}
+
+.writePart{
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+.messageForm{
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    max-width: 655px;
+}
+
+.writeAria{
+    width: 100%;
+    min-height: 75px;
+}
