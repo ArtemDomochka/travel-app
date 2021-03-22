@@ -15,8 +15,8 @@ function App() {
         <CountriesState>
           <BrowserRouter>
             <Switch>
-                <Route path="/travel-app" exact component={HomePage}/>
-                <Route path="/travel-app/AdminPage" exact component={AdminPage}/>
+                <Route path="/" exact component={HomePage}/>
+                <Route path="/AdminPage" exact component={AdminPage}/>
                 <Route path="/:country" component={CountryPage}/>
             </Switch>
           </BrowserRouter>
