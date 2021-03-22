@@ -42,7 +42,9 @@ const Search = props => {
                         <span className="input-group-text bg-white border-left-0 border">X</span>
                     </div>
                 </div>   
-                <button className="btn btn-light ml-1" type="button" onClick={searchSubmit}>
+                <button className="btn btn-warning ml-1" type="button" onClick={searchSubmit}
+                    style={{color:'white'}}
+                >
                     {content[lang].search}    
                 </button>                                 
             </form>

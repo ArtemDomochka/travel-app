@@ -32,6 +32,27 @@ const CountryPage = ({match}) => {
 
     },[countryName, lang])
 
+    const localization = {
+        en:{
+            video:'Check this video. There are some interesting facts about country',
+            gallery:'There is also a gallery with best places in the country.',
+            map1:'Where is',
+            map2:'located'
+        },
+        ru:{
+            video:'Посмотрите это видео. Тут несколько интересных фактов о стране',
+            gallery:'Также есть галерея с лучшими местами страны.',
+            map1:'Где',
+            map2:'находится'
+        },
+        uk:{
+            video:'Перевірте це відео. Є кілька цікавих фактів про державу',
+            gallery:'Також є галерея з найкращими місцями країн.',
+            map1:'Де',
+            map2:'Знаходиться'
+        }
+    }
+
     return(
         <div className="container-xxl d-flex flex-column h-100">
             <Header displaySearch={false}/>
@@ -62,13 +83,13 @@ const CountryPage = ({match}) => {
                             <p style={{paddingLeft:'10px'}}>{country.description}</p>
                         </div>  
                         
-                        <h4>Check this video. There are some interesting facts about {country.name}.</h4>
+                        <h4>{localization[lang].video}.</h4>
                         <CustomPlayer videoPath={country.videoPath}/>
 
                         <br/>
                         <br/>
                         
-                        <h4>There is also a gallery with best places in the country.</h4>
+                        <h4>{localization[lang].gallery}</h4>
                         <OtherGallery
                             sights={country.sight}
                         />
@@ -76,7 +97,7 @@ const CountryPage = ({match}) => {
                         <br/>
                         <br/>
                         
-                        <h4>Where is {country.name} located?</h4>
+                        <h4>{localization[lang].map1} {country.name} {localization[lang].map2}?</h4>
                         <div className="container px-0 mx-0">
                             <CustomMap
                                 coords={country.coords}
@@ -87,7 +108,7 @@ const CountryPage = ({match}) => {
 
                         <br/>
 
-                        <Comments country={country.name}/>
+                        <Comments country={country.code}/>
                         
 
                       </div>

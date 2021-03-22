@@ -21,3 +21,17 @@
     width: 100%;
     min-height: 75px;
 }
+
+.comment{
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.commentText{
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    max-width: 655px;
+}

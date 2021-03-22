@@ -77,12 +77,11 @@ const HomePage = props => {
                                           </div>
                                       )
                                   })
-                              : <h3 className="w-100">{warning[lang]}"<b>{searchSubstring}</b>"</h3>
+                              : <h4 className="w-100">{warning[lang]}"<b>{searchSubstring}</b>"</h4>
                             : <p>Loading</p>
                                 
                         }
 
-                        
                     </div>
                 </div>
             </main>

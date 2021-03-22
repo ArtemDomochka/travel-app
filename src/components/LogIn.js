@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react'
 import {Modal, Button, CloseButton} from 'react-bootstrap'
+import { LanguageContext } from '../context/countries/LanguageState'
 import { LogInContext } from '../context/countries/LogInState'
 
 const LogIn = props => {
     
     const {showLogIn, setShowLogIn, setUserInfo, setIsLogedIn} = useContext(LogInContext)
+    const {lang} = useContext(LanguageContext)
 
     const [login, setLogin] = useState('')
     const [pass, setPass] = useState('')
@@ -43,26 +45,54 @@ const LogIn = props => {
         setWarning('hidden')
     }
 
+    const localization = {
+        en:{
+            title: 'Authorization',
+            login:'Sign In',
+            cancel:'Cancel',
+            warning: 'Invalid login or password',
+            loginPl: 'Login',
+            passPl: 'Password'
+        },
+        ru:{
+            title: 'Авторизация',
+            login:'Войти',
+            cancel:'Отмена',
+            warning: 'Неверный логин или пароль',
+            loginPl: 'Логин',
+            passPl: 'Пароль'
+        },
+        uk:{
+            title: 'Авторизація',
+            login:'Увійти',
+            cancel:'Відміна',
+            warning: 'Невірний логін або пароль',
+            loginPl: 'Логін',
+            passPl: 'Пароль'
+        }   
+    }
+
     return(
         <Modal
             show={showLogIn}
             backdrop="static"
             onHide={()=>setShowLogIn(false)}
+            keyboard={false}
             centered
         >
             <Modal.Header >
-                <Modal.Title>Authorization</Modal.Title>
+                <Modal.Title>{localization[lang].title}</Modal.Title>
                 <CloseButton onClick={()=>{setShowLogIn(false); clear()}}/>
             </Modal.Header>
 
             <Modal.Body>
                 <form onSubmit={e=>e.preventDefault()}> 
-                    <input type="text" className="form-control" placeholder="Login"
+                    <input type="text" className="form-control" placeholder={localization[lang].loginPl}
                         style={{marginBottom:'10px'}} required
                         value={login}
                         onChange={e=>setLogin(e.target.value)}
                     />
-                    <input type="text" className="form-control" placeholder="Password"
+                    <input type="text" className="form-control" placeholder={localization[lang].passPl}
                         style={{marginBottom:'10px'}} required
                         value={pass}
                         onChange={e=>setPass(e.target.value)}
@@ -70,14 +100,14 @@ const LogIn = props => {
                     
                     <p 
                         style={{visibility:warning, margin:0, color:'red'}}
-                    >Invalid login or password</p>
+                    >{localization[lang].warning}</p>
 
                 </form>
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={()=>{setShowLogIn(false);clear()}}>Cancel</Button>
-                <Button variant="primary" onClick={handleLogIn}>Sign In</Button>
+                <Button variant="secondary" onClick={()=>{setShowLogIn(false);clear()}}>{localization[lang].cancel}</Button>
+                <Button variant="primary" onClick={handleLogIn}>{localization[lang].login}</Button>
             </Modal.Footer>
         </Modal>
     )

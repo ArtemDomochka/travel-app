@@ -10,19 +10,19 @@ import { LogInState } from './context/countries/LogInState';
 function App() {
 
   return (
+    <LanguageState>
       <LogInState>
-        <LanguageState>
-            <CountriesState>
-            <BrowserRouter>
-              <Switch>
-                  <Route path="/" exact component={HomePage}/>
-                  <Route path="/AdminPage" exact component={AdminPage}/>
-                  <Route path="/:country" component={CountryPage}/>
-              </Switch>
-            </BrowserRouter>
-          </CountriesState>
-        </LanguageState>
-      </LogInState>    
+        <CountriesState>
+          <BrowserRouter>
+            <Switch>
+                <Route path="/" exact component={HomePage}/>
+                <Route path="/AdminPage" exact component={AdminPage}/>
+                <Route path="/:country" component={CountryPage}/>
+            </Switch>
+          </BrowserRouter>
+        </CountriesState>
+      </LogInState>
+    </LanguageState>
   );
 }
 

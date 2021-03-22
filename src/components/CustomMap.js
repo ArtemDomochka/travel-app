@@ -34,7 +34,7 @@ const CustomMap = props => {
             <MapContainer 
                 center={[props.coords[0], props.coords[1]]}
                 zoom={6}
-                //scrollWheelZoom={true}
+                scrollWheelZoom={false}
                 style={{width:"100%", height:"100%"}}
                 fullscreenControl={true}
             >

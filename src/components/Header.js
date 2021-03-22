@@ -7,6 +7,7 @@ import Search from "./Search"
 import {LanguageContext} from '../context/countries/LanguageState'
 import { CountriesContext } from "../context/countries/CountriesState"
 import { LogInContext } from "../context/countries/LogInState"
+import avatar from '../media/smile.png'
 
 const Header = props => { // нужно фиксить маржны в свернутом режиме
                             // изменяется размер, когда уберается правый ползунок
@@ -55,7 +56,9 @@ const Header = props => { // нужно фиксить маржны в свер�
 
     return(
         <header>
-            <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-primary py-1">
+            <nav className="navbar fixed-top navbar-expand-lg navbar-light py-1"
+                style={{background:'linear-gradient(#09C6F9, #045DE9)'}}
+            >
                 <div className="container-fluid"> {/*try w/o fluid*/}
                     <div>
                     <NavLink exact to="/" className="navbar-brand" >
@@ -66,12 +69,12 @@ const Header = props => { // нужно фиксить маржны в свер�
                     </NavLink>
                     </div>
 
-                    <button className="navbar-toggler" type="button"
+                    {/* <button className="navbar-toggler" type="button"
                         data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                     >
                         <span className="navbar-toggler-icon"></span>
-                    </button>
+                    </button> */}
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar navbar-nav w-100 px-0">
@@ -81,7 +84,7 @@ const Header = props => { // нужно фиксить маржны в свер�
                             }
                             
                             <li className="nav-item ml-auto mr-4">
-                                <select className="form-select" value={lang} 
+                                <select className="form-select" variant="success" value={lang} 
                                     onChange={event=>handleLangChange(event.target.value)}>
                                     <option value="en">{content[lang].select.en}</option>
                                     <option value="ru">{content[lang].select.ru}</option>
@@ -94,7 +97,7 @@ const Header = props => { // нужно фиксить маржны в свер�
                                 ? <>
                                     <li className="nav-item">
                                         <button
-                                            className="btn btn-light mr-1"
+                                            className={"btn btn-success mr-1"}
                                             type="button"
                                             onClick={()=>setShowLogIn(true)}
                                         >
@@ -103,7 +106,7 @@ const Header = props => { // нужно фиксить маржны в свер�
                                     </li>
                                     <li className="nav-item">
                                         <button
-                                            className="btn btn-light"
+                                            className="btn btn-success"
                                             type="button"
                                             onClick={()=>setShowSignIn(true)}
                                         >
@@ -114,7 +117,7 @@ const Header = props => { // нужно фиксить маржны в свер�
                                 : <>
                                     <li className="nav-item">
                                         <button
-                                            className="btn btn-light mr-1"
+                                            className="btn btn-success mr-1"
                                             type="button"
                                             onClick={logOut}
                                         >
@@ -122,7 +125,7 @@ const Header = props => { // нужно фиксить маржны в свер�
                                         </button>
                                     </li>
                                     <li className="nav-item">
-                                        <img src={userInfo.photoPath} alt="avatar" width="40px" height="40px"/>
+                                        <img src={userInfo.photoPath || avatar} alt="avatar" width="40px" height="40px"/>
                                     </li>
                                   </>
                             }
