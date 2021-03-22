@@ -14,7 +14,7 @@ export const CountriesState = ({children}) => {
     const loadCountries =  () => {
         setHomeLoading(true)
 
-        fetch('api/getCountries')
+        fetch('https://arcane-citadel-11977.herokuapp.com/api/getCountries')
         //fetch('https://arcane-citadel-11977.herokuapp.com/api/getCountries')
         .then(res=>res.json())
         .then(res=>{
