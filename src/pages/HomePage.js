@@ -65,7 +65,7 @@ const HomePage = props => {
                               ? countriesToDisplay.map((country, index)=>{
                                       return(
                                           <div className="px-4 mb-4" style={{width:"300px"}} key={index}>
-                                              <NavLink to={'/' + country.name} key={index} className={styles.names}>  
+                                              <NavLink to={'/travel-app/' + country.name} key={index} className={styles.names}>  
                                                   <div className="card" style={{border:"2px solid lightblue"}}>
                                                       <img src={country.imagePath} alt={country.name} className="card-img-top"/>
                                                       <div className="card-body py-1" style={{backgroundColor:"white"}}>
