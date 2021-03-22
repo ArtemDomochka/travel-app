@@ -15,7 +15,7 @@ const LogIn = props => {
     const handleLogIn = async () => {
         if(!login.trim() || !pass.trim()) {setWarning('visible'); return}
 
-        const res = await fetch('/api/getUser', {
+        const res = await fetch('https://arcane-citadel-11977.herokuapp.com/api/getUser', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({login:login, pass:pass})

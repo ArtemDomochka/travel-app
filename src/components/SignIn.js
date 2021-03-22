@@ -35,7 +35,7 @@ const SignIn = props => {
             user.photoPath = responseJson.url
         }
          
-        const res = await fetch('/api/addUser', {
+        const res = await fetch('https://arcane-citadel-11977.herokuapp.com/api/addUser', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(user)

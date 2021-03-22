@@ -22,7 +22,7 @@ const CountryPage = ({match}) => {
         const fetchCountry = () => {
             setLoading(true)
     
-            fetch(`/api/addCountryPage/${countryName}/${lang}`)
+            fetch(`https://arcane-citadel-11977.herokuapp.com/api/addCountryPage/${countryName}/${lang}`)
             .then(res=>res.json())
             .then(res=>setCountry(JSON.parse(res)))
     

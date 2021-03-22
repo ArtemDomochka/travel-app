@@ -22,7 +22,7 @@ const Comments = props => {
             text: commentText
         }
 
-        const res = await fetch('/api/saveComment', {
+        const res = await fetch('https://arcane-citadel-11977.herokuapp.com/api/saveComment', {
             method:'POST',
             headers:{'Content-Type': 'application/json'},
             body: JSON.stringify(comment)
@@ -36,14 +36,14 @@ const Comments = props => {
     }
 
     const fetchComments = async () => {
-        const res = await fetch(`/api/loadComments/${props.country}`)
+        const res = await fetch(`https://arcane-citadel-11977.herokuapp.com/api/loadComments/${props.country}`)
         const resJson = await res.json()
         resJson.reverse()
         setComments(resJson) //kogda nado stringify, a kogda net?
     }
 
     useEffect(()=>{
-        fetch(`/api/loadComments/${props.country}`) // toze 4to i fetchComments, kak vstavit funkciyu
+        fetch(`https://arcane-citadel-11977.herokuapp.com/api/loadComments/${props.country}`) // toze 4to i fetchComments, kak vstavit funkciyu
         .then(res=>res.json())
         .then(resJson=>{resJson.reverse() ;setComments(resJson)})
     },[props.country])
