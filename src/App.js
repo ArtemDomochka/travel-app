@@ -9,7 +9,7 @@ import { LogInState } from './context/countries/LogInState';
 
 function App() {
 
-  return (
+  return ( //proxy
     <LanguageState>
       <LogInState>
         <CountriesState>
