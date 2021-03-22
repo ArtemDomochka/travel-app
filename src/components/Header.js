@@ -61,10 +61,10 @@ const Header = props => { // нужно фиксить маржны в свер�
             >
                 <div className="container-fluid"> {/*try w/o fluid*/}
                     <div>
-                    <NavLink exact to="/travel-app" className="navbar-brand" >
+                    <NavLink exact to="https://artemdomochka.github.io/travel-app/" className="navbar-brand" >
                         <img src={logo} alt="T" width="70px" className={styles.image}/>
                     </NavLink>
-                    <NavLink exact to="/travel-app" className="navbar-brand">
+                    <NavLink exact to="https://artemdomochka.github.io/travel-app/" className="navbar-brand">
                         <div className={styles.name}>TRAVEL</div> {/*w/o div??*/}
                     </NavLink>
                     </div>
