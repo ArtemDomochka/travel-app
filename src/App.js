@@ -1,5 +1,5 @@
 import './App.scss';
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {HashRouter, Switch, Route} from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import CountryPage from './pages/CountryPage'
 import { CountriesState } from './context/countries/CountriesState';
@@ -13,13 +13,13 @@ function App() {
     <LanguageState>
       <LogInState>
         <CountriesState>
-          <BrowserRouter>
+          <HashRouter>
             <Switch>
                 <Route path="/travel-app" exact component={HomePage}/>
                 <Route path="/AdminPage" exact component={AdminPage}/>
-                <Route path="/travel-app/:country" component={CountryPage}/>
+                <Route path="/travel-app/:id" component={CountryPage}/>
             </Switch>
-          </BrowserRouter>
+          </HashRouter>
         </CountriesState>
       </LogInState>
     </LanguageState>
