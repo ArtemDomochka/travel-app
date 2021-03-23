@@ -13,7 +13,8 @@ import Comments from '../components/Comments'
 
 const CountryPage = ({match}) => {
     const countryName = match.params.country
-    
+    console.log(countryName)
+
     const {lang} = useContext(LanguageContext)
     const [country, setCountry] = useState(null)
     const [loading, setLoading] = useState(false)
